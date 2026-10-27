@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SVA 2027 Operating Calendar — from 27 Oct 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050a16; --bg-2:#070e1e; --panel:#0b1730; --panel-hi:#10203f;
+  --line:rgba(120,165,230,.16); --line-2:rgba(120,165,230,.28);
+  --ink:#eaf1ff; --ink-soft:#c3d3ec; --muted:#94a9c9; --dim:#6b83a8;
+  --accent:#5b9dff; --cyan:#35e0d0; --violet:#a78bfa;
+  --amber:#ffb454; --rose:#ff7a90; --radius:14px;
+}
+*{box-sizing:border-box;}
+html{background:var(--bg);color-scheme:dark;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 700px at 12% -8%, rgba(91,157,255,.16), transparent 62%),
+    radial-gradient(900px 620px at 92% 4%, rgba(53,224,208,.11), transparent 60%),
+    radial-gradient(900px 900px at 50% 110%, rgba(167,139,250,.09), transparent 65%),
+    linear-gradient(180deg,#050a16 0%,#060c1b 45%,#040814 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-size:10.6pt;line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.sheet{max-width:1040px;margin:0 auto;padding:56px 46px 80px;}
+h1,h2,h3,h4{margin:0;line-height:1.22;font-weight:700;letter-spacing:-.015em;}
+p{margin:0 0 12px;}
+strong{color:#fff;font-weight:600;}
+em{color:var(--ink-soft);font-style:italic;}
+.grad{background:linear-gradient(100deg,#7fb4ff 0%,#5b9dff 38%,#35e0d0 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+.cover{
+  position:relative;border:1px solid var(--line-2);border-radius:22px;
+  padding:58px 54px 48px;
+  background:
+    radial-gradient(700px 380px at 88% -10%, rgba(91,157,255,.22), transparent 62%),
+    radial-gradient(560px 340px at 0% 108%, rgba(53,224,208,.14), transparent 60%),
+    linear-gradient(165deg,#0a1730 0%,#081227 55%,#060d1e 100%);
+  overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.cover::after{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(120,165,230,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(120,165,230,.055) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(circle at 70% 20%, #000 0%, transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 70% 20%, #000 0%, transparent 78%);
+  pointer-events:none;
+}
+.cover > *{position:relative;z-index:1;}
+.logo{display:inline-flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border:1px solid var(--line-2);border-radius:100px;background:rgba(91,157,255,.08);margin-bottom:32px;}
+.logo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.03em;color:#04101f;background:linear-gradient(140deg,#7fb4ff,#35e0d0);box-shadow:0 6px 20px rgba(91,157,255,.4);}
+.logo-text{font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);}
+.cover h1{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.06;margin-bottom:6px;}
+.cover h1 .thin{display:block;font-weight:300;font-size:25px;letter-spacing:.02em;color:var(--muted);margin-top:12px;}
+.cover-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;}
+.pill{font:500 9.4px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border-radius:100px;border:1px solid var(--line-2);color:var(--ink-soft);background:rgba(255,255,255,.03);}
+.pill.hot{color:#04101f;background:linear-gradient(120deg,#7fb4ff,#35e0d0);border-color:transparent;font-weight:600;}
+.cover-note{margin-top:32px;padding:18px 20px;border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;background:linear-gradient(100deg,rgba(53,224,208,.11),rgba(91,157,255,.04));font-size:10.2pt;color:var(--ink-soft);max-width:720px;}
+.cover-note b{color:#fff;}
+
+.part{margin-top:40px;break-inside:auto;}
+.part-head{display:flex;align-items:baseline;gap:16px;padding-bottom:10px;margin-bottom:18px;border-bottom:1px solid var(--line-2);position:relative;}
+.part-head::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:96px;background:linear-gradient(90deg,var(--accent),var(--cyan));border-radius:2px;}
+.part-num{font:700 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;white-space:nowrap;}
+.part-head h2{font-size:20px;letter-spacing:-.02em;}
+
+h3.sub{font:600 9.6px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:26px 0 12px;display:flex;align-items:center;gap:10px;}
+h3.sub::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent);}
+
+.table-wrap{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:rgba(9,18,38,.6);margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;font-size:9.6pt;}
+thead th{background:linear-gradient(180deg,#132a52,#0d1d38);color:#b9cff2;font:600 8.4px/1.3 'JetBrains Mono',monospace;letter-spacing:.13em;text-transform:uppercase;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line-2);white-space:nowrap;}
+tbody td{padding:10px 14px;border-bottom:1px solid rgba(120,165,230,.1);vertical-align:top;color:var(--ink-soft);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:rgba(120,165,230,.035);}
+tbody td:first-child{color:#fff;font-weight:500;}
+tbody td strong{color:#fff;}
+
+.compact table{font-size:9.2pt;}
+.compact thead th{padding:9px 11px;}
+.compact tbody td{padding:8px 11px;}
+
+.chip{display:inline-block;font:600 8.2px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:6px;white-space:nowrap;}
+.chip.ok{color:#6ff0dd;background:rgba(53,224,208,.13);border:1px solid rgba(53,224,208,.3);}
+.chip.warn{color:#ffc478;background:rgba(255,180,84,.12);border:1px solid rgba(255,180,84,.3);}
+.chip.no{color:#ff92a5;background:rgba(255,122,144,.12);border:1px solid rgba(255,122,144,.3);}
+.chip.reset{color:#d8c4ff;background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);}
+.chip.rhythm{color:#9cc4ff;background:rgba(91,157,255,.12);border:1px solid rgba(91,157,255,.3);}
+
+.callout{border-radius:var(--radius);padding:18px 22px;margin:16px 0;border-left:3px solid var(--accent);background:linear-gradient(100deg,rgba(91,157,255,.13),rgba(91,157,255,.03));font-size:10.6pt;color:#dbe7fb;break-inside:avoid;}
+.callout.cyan{border-left-color:var(--cyan);background:linear-gradient(100deg,rgba(53,224,208,.12),rgba(53,224,208,.03));}
+.callout.violet{border-left-color:var(--violet);background:linear-gradient(100deg,rgba(167,139,250,.12),rgba(167,139,250,.03));}
+.callout.amber{border-left-color:var(--amber);background:linear-gradient(100deg,rgba(255,180,84,.11),rgba(255,180,84,.03));}
+.callout .label{display:block;font:600 8.4px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;}
+.callout.cyan .label{color:var(--cyan);}
+.callout.violet .label{color:var(--violet);}
+.callout.amber .label{color:var(--amber);}
+
+.grid{display:grid;gap:14px;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+
+.stat{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,rgba(16,32,63,.85),rgba(7,15,32,.85));padding:16px 18px;break-inside:avoid;}
+.stat .k{font:600 8px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block;}
+.stat .v{font-size:18px;font-weight:800;letter-spacing:-.02em;background:linear-gradient(100deg,#9cc4ff,#35e0d0);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+.card{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(165deg,rgba(14,28,55,.9),rgba(8,16,34,.9));padding:18px 20px;break-inside:avoid;position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));opacity:.7;}
+.card h4{font-size:11.6pt;margin-bottom:8px;color:#fff;}
+.card p{font-size:9.8pt;color:var(--muted);margin:0;}
+.card p + p{margin-top:8px;}
+
+ul.clean{list-style:none;padding:0;margin:0;}
+ul.clean li{position:relative;padding:8px 0 8px 24px;border-bottom:1px dashed rgba(120,165,230,.13);font-size:10.1pt;color:var(--ink-soft);break-inside:avoid;}
+ul.clean li:last-child{border-bottom:none;}
+ul.clean li::before{content:"";position:absolute;left:4px;top:16px;width:7px;height:7px;border-radius:2px;background:linear-gradient(140deg,var(--accent),var(--cyan));transform:rotate(45deg);}
+ul.clean li b{color:#fff;font-weight:600;}
+
+ol.rules{counter-reset:r;list-style:none;padding:0;margin:0;}
+ol.rules li{counter-increment:r;position:relative;padding:11px 0 11px 46px;border-bottom:1px dashed rgba(120,165,230,.13);font-size:10.2pt;color:var(--ink-soft);break-inside:avoid;}
+ol.rules li:last-child{border-bottom:none;}
+ol.rules li::before{content:counter(r,decimal-leading-zero);position:absolute;left:0;top:11px;font:700 9.6px/1 'JetBrains Mono',monospace;color:var(--cyan);background:rgba(53,224,208,.1);border:1px solid rgba(53,224,208,.25);border-radius:6px;padding:5px 7px;}
+ol.rules li b{color:#fff;font-weight:600;}
+
+.schedule-strip{margin-top:14px;border:1px solid rgba(53,224,208,.3);border-radius:12px;background:linear-gradient(100deg,rgba(53,224,208,.1),rgba(91,157,255,.06));padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;break-inside:avoid;}
+.schedule-strip .lbl{font:600 8.2px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);}
+.schedule-strip .slot{font:600 9.4px/1 'JetBrains Mono',monospace;color:#dbe7fb;background:rgba(255,255,255,.05);border:1px solid var(--line-2);border-radius:7px;padding:7px 11px;}
+
+.today-row td{background:rgba(53,224,208,.08) !important;border-top:1px solid rgba(53,224,208,.35);border-bottom:1px solid rgba(53,224,208,.35);}
+.today-tag{font:600 7.6px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#04101f;background:linear-gradient(120deg,#7fb4ff,#35e0d0);border-radius:100px;padding:4px 7px;margin-left:6px;white-space:nowrap;}
+
+.footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:500 8.6px/1.6 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+
+.toolbar{position:fixed;right:22px;bottom:22px;z-index:99;display:flex;gap:10px;align-items:center;}
+.btn{cursor:pointer;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#04101f;background:linear-gradient(120deg,#7fb4ff,#35e0d0);border:none;border-radius:100px;padding:14px 22px;box-shadow:0 10px 30px rgba(91,157,255,.35);transition:transform .15s ease, box-shadow .15s ease;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(91,157,255,.45);}
+.hint{font:500 8.4px/1.5 'JetBrains Mono',monospace;color:var(--dim);max-width:180px;text-align:right;}
+
+@page{ size:A4; margin:12mm 11mm; }
+@media print{
+  html,body{background:#050a16 !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  body{font-size:9.4pt;}
+  .sheet{max-width:none;padding:0;margin:0;}
+  .no-print{display:none !important;}
+  .cover{break-after:page;page-break-after:always;border-radius:16px;}
+  .part{margin-top:24px;}
+  h2,h3,h4,h5{break-after:avoid;page-break-after:avoid;}
+  tr,.card,.callout,.stat,.table-wrap,.schedule-strip,ul.clean li,ol.rules li{break-inside:avoid;page-break-inside:avoid;}
+  thead{display:table-header-group;}
+}
+@media (max-width:780px){
+  .sheet{padding:28px 18px 60px;}
+  .cover{padding:36px 24px;}
+  .cover h1{font-size:29px;}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="logo">
+      <div class="logo-mark">SVA</div>
+      <div class="logo-text">Strategic Value Architecture</div>
+    </div>
+
+    <h1>
+      The 2027<br>Operating Calendar
+      <span class="thin">Start: Second Monday of January · End: Last Friday of November</span>
+    </h1>
+
+    <div class="cover-meta">
+      <span class="pill hot">Lead-in from 27 Oct 2026</span>
+      <span class="pill">Mon 11 Jan 2027</span>
+      <span class="pill">Fri 26 Nov 2027</span>
+      <span class="pill">46 Operating Weeks</span>
+      <span class="pill">4 Quarters</span>
+      <span class="pill">4 Reset Weeks</span>
+    </div>
+
+    <div class="cover-note">
+      <b>How to read this calendar:</b> The 46-week operating year runs from <b>Monday 11 January 2027</b> to <b>Friday 26 November 2027</b>.
+      Weeks <b>12, 24, 36 and 46</b> are quarterly reset weeks — the standard weekly rhythm stops for one week and the reset runs.
+      That gives <b>42 standard rhythm weeks + 4 reset weeks = 46 operating weeks</b>.
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">At a Glance</span>
+      <h2>The 2027 Operating Year</h2>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="stat"><span class="k">Operating Start</span><span class="v">11 Jan 2027</span></div>
+      <div class="stat"><span class="k">Operating End</span><span class="v">26 Nov 2027</span></div>
+      <div class="stat"><span class="k">Total Weeks</span><span class="v">46</span></div>
+      <div class="stat"><span class="k">Reset Weeks</span><span class="v">4</span></div>
+    </div>
+
+    <div class="grid grid-4" style="margin-top:14px;">
+      <div class="stat"><span class="k">Rhythm Weeks</span><span class="v">42</span></div>
+      <div class="stat"><span class="k">Quarters</span><span class="v">4</span></div>
+      <div class="stat"><span class="k">Prospects</span><span class="v">~920–960</span></div>
+      <div class="stat"><span class="k">Lead-In</span><span class="v">27 Oct 2026</span></div>
+    </div>
+
+    <div class="callout cyan">
+      <span class="label">Today’s Position</span>
+      <strong>Tuesday 27 October 2026</strong> sits inside the 2026 Q4 close. The 2027 operating year does not start until
+      <strong>Monday 11 January 2027</strong>. The period from today to 10 January 2027 is the lead-in and Year-End Reset.
+    </div>
+  </section>
+
+  <!-- LEAD IN -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Lead-In</span>
+      <h2>From Today — 27 Oct 2026 to 10 Jan 2027</h2>
+    </div>
+
+    <div class="table-wrap compact">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:120px">Block</th>
+            <th style="width:190px">Dates</th>
+            <th>Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="today-row">
+            <td>Lead-In 0 <span class="today-tag">Today</span></td>
+            <td>Tue 27 Oct – Sun 1 Nov 2026</td>
+            <td>Continue 2026 Q4 rhythm. Close October pipeline. No new 2027 cohort launch yet.</td>
+          </tr>
+          <tr><td>Lead-In 1</td><td>Mon 2 Nov – Sun 8 Nov 2026</td><td>Q4 2026 final stretch. Protect follow-ups and diagnostic conversions.</td></tr>
+          <tr><td>Lead-In 2</td><td>Mon 9 Nov – Sun 15 Nov 2026</td><td>Q4 2026 close preparation. Confirm November diagnostics and gate payments.</td></tr>
+          <tr><td>Lead-In 3</td><td>Mon 16 Nov – Sun 22 Nov 2026</td><td>Final Q4 2026 follow-ups. Draft year-end review inputs.</td></tr>
+          <tr><td>Lead-In 4</td><td>Mon 23 Nov – Sun 29 Nov 2026</td><td>Q4 2026 closes <strong>Fri 27 Nov</strong>. Archive outcomes. Prepare Year-End Reset.</td></tr>
+          <tr><td>Reset 1</td><td>Mon 30 Nov – Sun 6 Dec 2026</td><td>Year-End Reset begins. Export data. Annual review Part 1.</td></tr>
+          <tr><td>Reset 2</td><td>Mon 7 Dec – Sun 13 Dec 2026</td><td>Annual review Part 2. Re-tier all accounts for 2027.</td></tr>
+          <tr><td>Reset 3</td><td>Mon 14 Dec – Sun 20 Dec 2026</td><td>Set Q1 2027 strategy. Define target segments and cohort composition.</td></tr>
+          <tr><td>Reset 4</td><td>Mon 21 Dec – Sun 27 Dec 2026</td><td>Prepare Q1 2027 cohort list. Build SIS inputs. Rest.</td></tr>
+          <tr><td>Reset 5</td><td>Mon 28 Dec – Sun 3 Jan 2027</td><td>Final 2026 close. Confirm Q1 2027 pipeline. Rest.</td></tr>
+          <tr><td>Reset 6</td><td>Mon 4 Jan – Sun 10 Jan 2027</td><td>Q1 2027 readiness. Load cohorts. Confirm schedules. Start Week 1 on Mon 11 Jan.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout amber">
+      <span class="label">Rule</span>
+      The lead-in is not a second operating year. It is the <strong>2026 close + Year-End Reset + 2027 pre-season</strong>.
+      The first numbered SVA week of 2027 is <strong>Week 1 — Monday 11 January 2027</strong>.
+    </div>
+  </section>
+
+  <!-- QUARTER STRUCTURE -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Structure</span>
+      <h2>The Four Quarters</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:80px">Quarter</th>
+            <th style="width:100px">Weeks</th>
+            <th style="width:190px">Quarter Dates</th>
+            <th style="width:90px">Rhythm Weeks</th>
+            <th style="width:80px">Reset Week</th>
+            <th style="width:170px">Reset Dates</th>
+            <th>Prospects</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Q1</td>
+            <td>1–12</td>
+            <td>Mon 11 Jan – Fri 2 Apr 2027</td>
+            <td>1–11</td>
+            <td><span class="chip reset">W12</span></td>
+            <td>Mon 29 Mar – Fri 2 Apr</td>
+            <td>240</td>
+          </tr>
+          <tr>
+            <td>Q2</td>
+            <td>13–24</td>
+            <td>Mon 5 Apr – Fri 25 Jun 2027</td>
+            <td>13–23</td>
+            <td><span class="chip reset">W24</span></td>
+            <td>Mon 21 Jun – Fri 25 Jun</td>
+            <td>240</td>
+          </tr>
+          <tr>
+            <td>Q3</td>
+            <td>25–36</td>
+            <td>Mon 28 Jun – Fri 17 Sep 2027</td>
+            <td>25–35</td>
+            <td><span class="chip reset">W36</span></td>
+            <td>Mon 13 Sep – Fri 17 Sep</td>
+            <td>240</td>
+          </tr>
+          <tr>
+            <td>Q4</td>
+            <td>37–46</td>
+            <td>Mon 20 Sep – Fri 26 Nov 2027</td>
+            <td>37–45</td>
+            <td><span class="chip reset">W46</span></td>
+            <td>Mon 22 Nov – Fri 26 Nov</td>
+            <td>200–240</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout violet">
+      <span class="label">Reset Week Logic</span>
+      Weeks 12, 24, 36 and 46 are <strong>reset weeks</strong>, not standard email weeks.
+      The quarter’s last standard rhythm week is Week 11, 23, 35 and 45 respectively.
+      The next quarter begins after the reset week.
+    </div>
+  </section>
+
+  <!-- FULL WEEK TABLE -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Week by Week</span>
+      <h2>The 46 Operating Weeks — 2027</h2>
+    </div>
+
+    <div class="table-wrap compact">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:54px">Wk</th>
+            <th style="width:100px">Monday</th>
+            <th style="width:100px">Friday</th>
+            <th style="width:54px">Qtr</th>
+            <th style="width:104px">Mode</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>11 Jan</td><td>15 Jan</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>2</td><td>18 Jan</td><td>22 Jan</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>3</td><td>25 Jan</td><td>29 Jan</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>4</td><td>1 Feb</td><td>5 Feb</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>5</td><td>8 Feb</td><td>12 Feb</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>6</td><td>15 Feb</td><td>19 Feb</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>7</td><td>22 Feb</td><td>26 Feb</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>8</td><td>1 Mar</td><td>5 Mar</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>9</td><td>8 Mar</td><td>12 Mar</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>10</td><td>15 Mar</td><td>19 Mar</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>11</td><td>22 Mar</td><td>26 Mar</td><td>Q1</td><td><span class="chip rhythm">Rhythm</span></td><td>Last standard rhythm week of Q1.</td></tr>
+          <tr><td>12</td><td>29 Mar</td><td>2 Apr</td><td>Q1</td><td><span class="chip reset">Reset</span></td><td>Quarterly Reset. No standard email rhythm. Run 5-step reset.</td></tr>
+
+          <tr><td>13</td><td>5 Apr</td><td>9 Apr</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>14</td><td>12 Apr</td><td>16 Apr</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>15</td><td>19 Apr</td><td>23 Apr</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>16</td><td>26 Apr</td><td>30 Apr</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>17</td><td>3 May</td><td>7 May</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>18</td><td>10 May</td><td>14 May</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>19</td><td>17 May</td><td>21 May</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>20</td><td>24 May</td><td>28 May</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>21</td><td>31 May</td><td>4 Jun</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>22</td><td>7 Jun</td><td>11 Jun</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>23</td><td>14 Jun</td><td>18 Jun</td><td>Q2</td><td><span class="chip rhythm">Rhythm</span></td><td>Last standard rhythm week of Q2.</td></tr>
+          <tr><td>24</td><td>21 Jun</td><td>25 Jun</td><td>Q2</td><td><span class="chip reset">Reset</span></td><td>Quarterly Reset. No standard email rhythm. Run 5-step reset.</td></tr>
+
+          <tr><td>25</td><td>28 Jun</td><td>2 Jul</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>26</td><td>5 Jul</td><td>9 Jul</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>27</td><td>12 Jul</td><td>16 Jul</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>28</td><td>19 Jul</td><td>23 Jul</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>29</td><td>26 Jul</td><td>30 Jul</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>30</td><td>2 Aug</td><td>6 Aug</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>31</td><td>9 Aug</td><td>13 Aug</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>32</td><td>16 Aug</td><td>20 Aug</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>33</td><td>23 Aug</td><td>27 Aug</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>34</td><td>30 Aug</td><td>3 Sep</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>35</td><td>6 Sep</td><td>10 Sep</td><td>Q3</td><td><span class="chip rhythm">Rhythm</span></td><td>Last standard rhythm week of Q3.</td></tr>
+          <tr><td>36</td><td>13 Sep</td><td>17 Sep</td><td>Q3</td><td><span class="chip reset">Reset</span></td><td>Quarterly Reset. No standard email rhythm. Run 5-step reset.</td></tr>
+
+          <tr><td>37</td><td>20 Sep</td><td>24 Sep</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>38</td><td>27 Sep</td><td>1 Oct</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>39</td><td>4 Oct</td><td>8 Oct</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>40</td><td>11 Oct</td><td>15 Oct</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>41</td><td>18 Oct</td><td>22 Oct</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>42</td><td>25 Oct</td><td>29 Oct</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>43</td><td>1 Nov</td><td>5 Nov</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>44</td><td>8 Nov</td><td>12 Nov</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Standard Tue–Thu sequence.</td></tr>
+          <tr><td>45</td><td>15 Nov</td><td>19 Nov</td><td>Q4</td><td><span class="chip rhythm">Rhythm</span></td><td>Last standard rhythm week of Q4.</td></tr>
+          <tr><td>46</td><td>22 Nov</td><td>26 Nov</td><td>Q4</td><td><span class="chip reset">Reset</span></td><td>Quarterly Reset. Last Friday 26 Nov. Operating year ends.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout cyan">
+      <span class="label">Operating Year End</span>
+      The last operating Friday is <strong>26 November 2027</strong>. Week 46 continues to Sunday 28 November for reset wrap-up.
+      The next cycle’s lead-in begins after that.
+    </div>
+  </section>
+
+  <!-- RESET PROTOCOL -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Reset</span>
+      <h2>The Quarterly Reset Protocol</h2>
+    </div>
+
+    <div class="callout violet">
+      <span class="label">The Reset Is the Work</span>
+      The reset is not a break from the work. It is the work that makes the next quarter possible.
+      During Weeks 12, 24, 36 and 46, stop the standard weekly rhythm and run the five steps below.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:60px">Step</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Export the quarter’s Mail Suite data.</td></tr>
+          <tr><td>2</td><td>Tier all 240 prospects: Tier 1, Tier 2, Tier 3.</td></tr>
+          <tr><td>3</td><td>Review pipeline, conversion, cash, risks.</td></tr>
+          <tr><td>4</td><td>Set the next quarter’s strategy: target segments, cohort composition, any adjustments.</td></tr>
+          <tr><td>5</td><td>Prepare the next quarter’s cohort list.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Reset Week Dates</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:100px">Reset</th><th style="width:80px">Week</th><th style="width:210px">Dates</th><th>What It Closes / Opens</th></tr></thead>
+        <tbody>
+          <tr><td>Q1 Reset</td><td>12</td><td>Mon 29 Mar – Fri 2 Apr 2027</td><td>Closes Q1. Sets Q2 strategy and cohort list.</td></tr>
+          <tr><td>Q2 Reset</td><td>24</td><td>Mon 21 Jun – Fri 25 Jun 2027</td><td>Closes Q2. Sets Q3 strategy and cohort list.</td></tr>
+          <tr><td>Q3 Reset</td><td>36</td><td>Mon 13 Sep – Fri 17 Sep 2027</td><td>Closes Q3. Sets Q4 strategy and cohort list.</td></tr>
+          <tr><td>Q4 Reset</td><td>46</td><td>Mon 22 Nov – Fri 26 Nov 2027</td><td>Closes Q4 and the operating year. Feeds the Year-End Reset.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WEEKLY RHYTHM -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Rhythm</span>
+      <h2>Standard Week — Rhythm Weeks Only</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:130px">Day</th><th>Action</th><th style="width:130px">Time</th><th style="width:120px">Cognitive Slot</th></tr></thead>
+        <tbody>
+          <tr><td>Monday</td><td>Send follow-ups (drafted Friday)</td><td>2:00–2:30pm</td><td>Decision</td></tr>
+          <tr><td>Monday</td><td>Research &amp; prepare new cohort</td><td>Afternoon</td><td>—</td></tr>
+          <tr><td>Tuesday</td><td>Email 1 to new cohort</td><td>3:15–4:15pm</td><td>Reading</td></tr>
+          <tr><td>Wednesday</td><td>Email 2 to new cohort</td><td>3:15–4:15pm</td><td>Reading</td></tr>
+          <tr><td>Thursday AM</td><td>Email 3 to new cohort</td><td>6:30–7:00am</td><td>Reading</td></tr>
+          <tr><td>Thursday PM</td><td>Email 4 to new cohort</td><td>2:30–3:30pm</td><td>Bridge</td></tr>
+          <tr><td>Friday</td><td>Weekly review + draft Monday follow-ups</td><td>30–60 min</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="schedule-strip">
+      <span class="lbl">Email Schedule</span>
+      <span class="slot">TUE 3:15pm · E1</span>
+      <span class="slot">WED 3:15pm · E2</span>
+      <span class="slot">THU 6:30am · E3</span>
+      <span class="slot">THU 2:30pm · E4</span>
+    </div>
+
+    <div class="callout amber">
+      <span class="label">Reset Weeks Override This</span>
+      During Weeks 12, 24, 36 and 46, there is <strong>no standard Tuesday–Thursday email sequence</strong>.
+      The reset protocol replaces the weekly rhythm for that week.
+    </div>
+  </section>
+
+  <!-- MONTHLY / QUARTERLY -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Cadence</span>
+      <h2>Monthly, Quarterly, Annual</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:150px">Frequency</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr><td>Monthly</td><td>Last Friday of each month: pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>Quarterly</td><td>Weeks 12, 24, 36, 46: full re-tiering, reset, next-quarter strategy, next cohort list.</td></tr>
+          <tr><td>Half-Yearly</td><td>End of Q2 (Week 24) and end of Q4 (Week 46): deep re-assessment and full reset.</td></tr>
+          <tr><td>Annually</td><td>After Week 46: Year-End Reset, annual review, Q1 strategy, rest.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Monthly Check-In Fridays — 2027</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:100px">Month</th><th style="width:150px">Last Friday</th><th>Check-In Focus</th></tr></thead>
+        <tbody>
+          <tr><td>January</td><td>Fri 29 Jan 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>February</td><td>Fri 26 Feb 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>March</td><td>Fri 26 Mar 2027</td><td>Pre-reset check-in. Q1 close readiness.</td></tr>
+          <tr><td>April</td><td>Fri 30 Apr 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>May</td><td>Fri 28 May 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>June</td><td>Fri 25 Jun 2027</td><td>Q2 reset week. Half-year full reset.</td></tr>
+          <tr><td>July</td><td>Fri 30 Jul 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>August</td><td>Fri 27 Aug 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>September</td><td>Fri 24 Sep 2027</td><td>Post-Q3 reset. Q4 readiness.</td></tr>
+          <tr><td>October</td><td>Fri 29 Oct 2027</td><td>Pipeline, conversion, cash, risks, OKRs.</td></tr>
+          <tr><td>November</td><td>Fri 26 Nov 2027</td><td>Q4 reset week and operating year close.</td></tr>
+          <tr><td>December</td><td>Fri 31 Dec 2027</td><td>Year-End Reset. Annual review.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- MASTER STRIP -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Summary</span>
+      <h2>One-Line Calendar Logic</h2>
+    </div>
+
+    <div class="callout">
+      <span class="label">The 2027 Cycle</span>
+      <strong>Lead-in from 27 Oct 2026 → Year-End Reset to 10 Jan 2027 → Week 1 starts Mon 11 Jan 2027 → 46 operating weeks → Q1 reset W12 → Q2 reset W24 → Q3 reset W36 → Q4 reset W46 → operating year ends Fri 26 Nov 2027.</strong>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>Quarter Starts</h4>
+        <p><strong>Q1:</strong> Mon 11 Jan 2027</p>
+        <p><strong>Q2:</strong> Mon 5 Apr 2027</p>
+        <p><strong>Q3:</strong> Mon 28 Jun 2027</p>
+        <p><strong>Q4:</strong> Mon 20 Sep 2027</p>
+      </div>
+      <div class="card">
+        <h4>Quarter Resets</h4>
+        <p><strong>W12:</strong> Mon 29 Mar – Fri 2 Apr 2027</p>
+        <p><strong>W24:</strong> Mon 21 Jun – Fri 25 Jun 2027</p>
+        <p><strong>W36:</strong> Mon 13 Sep – Fri 17 Sep 2027</p>
+        <p><strong>W46:</strong> Mon 22 Nov – Fri 26 Nov 2027</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>SVA 2027 Operating Calendar</span>
+    <span>Lead-In: 27 Oct 2026 · Start: 11 Jan 2027 · End: 26 Nov 2027</span>
+  </div>
+
+</main>
+
+<div class="toolbar no-print">
+  <div class="hint">Enable “Background graphics” in the print dialog.</div>
+  <button class="btn" onclick="window.print()">Save as PDF</button>
+</div>
+
+</body>
+</html>
